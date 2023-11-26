@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QualiWatchApi.Api", "QualiWatchApi.Api\QualiWatchApi.Api.csproj", "{AAC18807-DC0B-4370-996E-20FFE672015F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QualiWatchApi.Infrastructure", "QualiWatchApi.Infrastructure\QualiWatchApi.Infrastructure.csproj", "{FBD5B09D-43FD-4936-AD7E-DC801E621B02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QualiWatchApi.Domain", "QualiWatchApi.Domain\QualiWatchApi.Domain.csproj", "{79844DC4-33DE-432B-B2D0-877E13129DAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QualiWatchApi.Contracts", "QualiWatchApi.Contracts\QualiWatchApi.Contracts.csproj", "{8A168A4F-D8E6-48CD-8B38-97EAE9FEEC8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QualiWatchApi.Application", "QualiWatchApi.Application\QualiWatchApi.Application.csproj", "{2AA287CC-1A23-4221-954D-0A917F1607AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAC18807-DC0B-4370-996E-20FFE672015F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC18807-DC0B-4370-996E-20FFE672015F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC18807-DC0B-4370-996E-20FFE672015F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC18807-DC0B-4370-996E-20FFE672015F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD5B09D-43FD-4936-AD7E-DC801E621B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD5B09D-43FD-4936-AD7E-DC801E621B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD5B09D-43FD-4936-AD7E-DC801E621B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD5B09D-43FD-4936-AD7E-DC801E621B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79844DC4-33DE-432B-B2D0-877E13129DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79844DC4-33DE-432B-B2D0-877E13129DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79844DC4-33DE-432B-B2D0-877E13129DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79844DC4-33DE-432B-B2D0-877E13129DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A168A4F-D8E6-48CD-8B38-97EAE9FEEC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A168A4F-D8E6-48CD-8B38-97EAE9FEEC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A168A4F-D8E6-48CD-8B38-97EAE9FEEC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A168A4F-D8E6-48CD-8B38-97EAE9FEEC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AA287CC-1A23-4221-954D-0A917F1607AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AA287CC-1A23-4221-954D-0A917F1607AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA287CC-1A23-4221-954D-0A917F1607AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AA287CC-1A23-4221-954D-0A917F1607AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
