@@ -1,5 +1,5 @@
 ﻿using QualiWatchApi.Application.Common.Interfaces.Persistence;
-
+using QualiWatchApi.Application.Common.Interfaces.Services;
 using QualiWatchApi.Domain.Model.Produtos;
 
 namespace QualiWatchApi.Infrastructure.Persistence.Repositories;
@@ -7,10 +7,12 @@ namespace QualiWatchApi.Infrastructure.Persistence.Repositories;
 public class ProdutoRepository : IProdutoRepository
 {
     private readonly QualiWatchApiDbContext _dbContext;
+    private readonly IValidadeServices _validadeServices;
 
-    public ProdutoRepository(QualiWatchApiDbContext dbContext)
+    public ProdutoRepository(QualiWatchApiDbContext dbContext, IValidadeServices validadeServices)
     {
         _dbContext = dbContext;
+        _validadeServices = validadeServices;
     }
     public async Task Add(Produto produto)
     {
@@ -50,6 +52,7 @@ public class ProdutoRepository : IProdutoRepository
         else {
             _dbContext.Update(produtoOriginal);
              produtoOriginal.Update(nome,lote,validade);
+             _validadeServices.AtualizarPertoDeVencer(validade,produtoOriginal);
             await _dbContext.SaveChangesAsync();
             return false;
         }

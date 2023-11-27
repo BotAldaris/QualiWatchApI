@@ -11,10 +11,29 @@ public class ValidadeRepository : IValidadeRepository
     {
         _dbContext = dbContext;
     }
+    public void AdicionarValidade(ref Produto produto)
+    {
+        produto.SetFoiAlterado(true);
+       _dbContext.Validades.Add(Validade.Criar(produto.Id));
+    }
+
+    public void DeletarValidade(ref Produto produto)
+    {
+        var produtoId = produto.Id;
+        var validade = _dbContext.Validades.FirstOrDefault(v => v.ProdutoId == produtoId);
+        if (validade is not null)
+        {
+            produto.SetFoiAlterado(false);
+            _dbContext.Validades.Remove(validade);
+        }
+    }
 
     public void AtualizarValidade()
     {
-        var produtos = _dbContext.Produtos.Where(p => p.FoiAlertado == false && DateTime.Now.AddMonths(1) > p.Validade).Select(p => p).ToList();
+        var produtos = _dbContext.Produtos
+            .Where(p => p.FoiAlertado == false && DateTime.Now.AddMonths(1) > p.Validade)
+            .Select(p => p)
+            .ToList();
         if (produtos.Count > 0)
         {
             produtos.ForEach(p =>
