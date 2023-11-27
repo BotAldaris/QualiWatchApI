@@ -1,0 +1,8 @@
+@QualiWatchApi = http://localhost:5063
+
+POST {{QualiWatchApi}}/Produtos/validade/
+Content-Type: application/json
+{
+}
+###
+
