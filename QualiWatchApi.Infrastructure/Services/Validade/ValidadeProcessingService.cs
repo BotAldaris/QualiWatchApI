@@ -22,7 +22,7 @@ public class ValidadeProcessingService : IValidadeProcessingService
         while (!stoppingToken.IsCancellationRequested)
         {
             _validadeRepository.AtualizarValidade();
-            await Task.Delay(TimeSpan.FromDays(1), stoppingToken);
+            await Task.Delay(TimeSpan.FromHours(12), stoppingToken);
         }
     }
 }

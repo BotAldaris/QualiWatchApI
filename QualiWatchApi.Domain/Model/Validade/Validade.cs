@@ -6,7 +6,7 @@ public class Validade
 {
     public Guid Id { get; private set; }
     public Guid ProdutoId { get; set; }
-    public virtual Produto Produto { get; set; }
+    public virtual Produto Produto { get; set; }    
     public DateTime DiaAdicionado { get; set; }
     private Validade(Guid id, Guid produtoId, DateTime diaAdicionado)
     {
@@ -16,6 +16,6 @@ public class Validade
     }
     public static Validade Criar(Guid produtoId)
     {
-        return new Validade(Guid.NewGuid(), produtoId, DateTime.Now);
+        return new Validade(Guid.NewGuid(), produtoId, DateTime.UtcNow);
     }
 }
