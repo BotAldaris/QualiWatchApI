@@ -16,12 +16,14 @@ public static class DependecyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
         ConfigurationManager builderConfiguration)
     {
-        services.AddPersitence();
+        services.AddPersitence(builderConfiguration);
         return services;
     }
-    public static IServiceCollection AddPersitence(this IServiceCollection services)
+    public static IServiceCollection AddPersitence(this IServiceCollection services, ConfigurationManager builderConfiguration)
     {
-        services.AddDbContext<QualiWatchApiDbContext>(options => options.UseSqlServer("Server=localhost;Database=qualiwatch;User Id=sa;Password=Aldar1s!;TrustServerCertificate=true;"));
+        services.AddDbContext<QualiWatchApiDbContext>
+            (options => options
+                .UseSqlServer(builderConfiguration.GetConnectionString("QualiWatchConnection")));
         services.AddScoped<IValidadeRepository, ValidadeRepository>();
         services.AddScoped<IValidadeServices, ValidadeServices>();
         services.AddScoped<IProdutoRepository,ProdutoRepository>();

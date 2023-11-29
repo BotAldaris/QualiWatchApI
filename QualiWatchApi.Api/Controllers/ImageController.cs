@@ -16,7 +16,7 @@ public class ImageController : ApiController
     }
 
     [HttpPost("texto")]
-    public async Task<IActionResult> etTextFromImage([FromBody] ImageRequest imageRequest)
+    public async Task<IActionResult> GetTextFromImage([FromBody] ImageRequest imageRequest)
     {
         var query = new TextoQuery(imageRequest.Base64);
         var result = await _mediator.Send(query);
