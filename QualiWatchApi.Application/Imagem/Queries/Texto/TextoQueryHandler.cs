@@ -16,7 +16,7 @@ public class TextoQueryHandler : IRequestHandler<TextoQuery, List<ImageResponse>
     public async Task<List<ImageResponse>> Handle(TextoQuery request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
-        var validades = _imagemParaTexto.GetTexto(request.Base64);
+        var validades = _imagemParaTexto.PegarTexto(request.Base64);
         return validades;
     }
 }

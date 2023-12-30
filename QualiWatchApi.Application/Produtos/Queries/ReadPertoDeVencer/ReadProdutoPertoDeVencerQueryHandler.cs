@@ -22,7 +22,7 @@ public class ReadProdutoPertoDeVencerQueryHandler : IRequestHandler<ReadProdutoP
     public async Task<List<ProdutoResult>> Handle(ReadProdutoPertoDeVencerQuery request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
-        var produtosIds = _validadeRepository.GetProdutosPertoDeVencer(request.UltimaAtualizacao);
+        var produtosIds = _validadeRepository.PegarProdutosPertoDeVencer(request.UltimaAtualizacao);
         // var produtos = _produtoRepository.GetProdutosPertoDeVencer(produtosIds);
         List<ProdutoResult> result = produtosIds.ConvertAll(p => new ProdutoResult(p.Id.ToString(), p.Nome, p.Lote, p.Validade));
         return result;

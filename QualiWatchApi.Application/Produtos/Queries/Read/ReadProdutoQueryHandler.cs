@@ -18,7 +18,7 @@ public class ReadProdutoQueryHandler : IRequestHandler<ReadProdutoQuery, ErrorOr
     public async Task<ErrorOr<List<ProdutoResult>>> Handle(ReadProdutoQuery request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
-        var produtos = _produtoRepository.Read();
+        var produtos = _produtoRepository.PegarTodosOsProdutos();
         List<ProdutoResult> result = produtos.ConvertAll(p => new ProdutoResult(p.Id.ToString(), p.Nome, p.Lote, p.Validade));
         if(result is null)
         {

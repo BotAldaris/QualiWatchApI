@@ -43,7 +43,7 @@ public class Produto
         }
     }
 
-    public void SetFoiAlterado(bool foiAlertado)
+    public void SetFoiAlertado(bool foiAlertado)
     {
         FoiAlertado = foiAlertado;
     }

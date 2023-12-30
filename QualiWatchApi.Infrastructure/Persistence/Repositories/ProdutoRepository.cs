@@ -14,13 +14,13 @@ public class ProdutoRepository : IProdutoRepository
         _dbContext = dbContext;
         _validadeServices = validadeServices;
     }
-    public async Task Add(Produto produto)
+    public async Task AdicionarProduto(Produto produto)
     {
         await _dbContext.Produtos.AddAsync(produto);
         await _dbContext.SaveChangesAsync();
     }
 
-    public bool Delete(Guid id)
+    public bool DeletarProduto(Guid id)
     {
         var produtoParaApagar = ReadProdutoById(id);
         if (produtoParaApagar is null)
@@ -32,7 +32,7 @@ public class ProdutoRepository : IProdutoRepository
         return false;
     }
 
-    public List<Produto> Read()
+    public List<Produto> PegarTodosOsProdutos()
     {
         return _dbContext.Produtos.OrderBy(p => p.Validade).ToList();
     }
@@ -42,7 +42,7 @@ public class ProdutoRepository : IProdutoRepository
         return _dbContext.Produtos.FirstOrDefault(p => p.Id == id);
     }
 
-    public async Task<bool> Update(Guid id, string? nome = null, string? lote = null , DateTime? validade = null)
+    public async Task<bool> AtualizarProduto(Guid id, string? nome = null, string? lote = null , DateTime? validade = null)
     {
         Produto? produtoOriginal = ReadProdutoById(id);
         if(produtoOriginal is null)

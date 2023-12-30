@@ -13,7 +13,7 @@ public class ValidadeRepository : IValidadeRepository
     }
     public void AdicionarValidade(ref Produto produto)
     {
-        produto.SetFoiAlterado(true);
+        produto.SetFoiAlertado(true);
        _dbContext.Validades.Add(Validade.Criar(produto.Id));
     }
 
@@ -23,7 +23,7 @@ public class ValidadeRepository : IValidadeRepository
         var validade = _dbContext.Validades.FirstOrDefault(v => v.ProdutoId == produtoId);
         if (validade is not null)
         {
-            produto.SetFoiAlterado(false);
+            produto.SetFoiAlertado(false);
             _dbContext.Validades.Remove(validade);
         }
     }
@@ -36,15 +36,11 @@ public class ValidadeRepository : IValidadeRepository
             .ToList();
         if (produtos.Count > 0)
         {
-            produtos.ForEach(p =>
-            {
-                p.SetFoiAlterado(true);
-                _dbContext.Validades.Add(Validade.Criar(p.Id));
-            });
+            produtos.ForEach(p => AdicionarValidade(ref p));
             _dbContext.SaveChanges();
         }
     }
-    public List<Produto> GetProdutosPertoDeVencer(DateTime? ultimaAtualizacao)
+    public List<Produto> PegarProdutosPertoDeVencer(DateTime? ultimaAtualizacao)
     {
         if(ultimaAtualizacao is null)
         {

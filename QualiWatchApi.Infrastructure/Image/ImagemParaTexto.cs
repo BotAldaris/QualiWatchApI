@@ -30,7 +30,7 @@ public class ImagemParaTexto : IImagemParaTexto
         return annotations;
     }
 
-    public List<ImageResponse> GetValidade(string base64)
+    public List<ImageResponse> PegarValidade(string base64)
     {
         var annotations = PegarMatchesNoGoogleApi(base64);
         List<ImageResponse> result = new List<ImageResponse>();
@@ -51,7 +51,7 @@ public class ImagemParaTexto : IImagemParaTexto
         return result;
     }
 
-    public List<ImageResponse> GetTexto(string base64)
+    public List<ImageResponse> PegarTexto(string base64)
     {
         var annotations = PegarMatchesNoGoogleApi(base64);
         List<ImageResponse> result = new List<ImageResponse>();

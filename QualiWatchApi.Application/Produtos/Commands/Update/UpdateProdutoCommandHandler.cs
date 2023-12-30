@@ -16,7 +16,7 @@ namespace QualiWatchApi.Application.Produtos.Commands.Update
         }
         public async Task<ErrorOr<bool>> Handle(UpdateProdutoCommand request, CancellationToken cancellationToken)
         {
-            var erro = await _produtoRepository.Update(Guid.Parse(request.Id),request.Nome, request.Lote, request.Validade);
+            var erro = await _produtoRepository.AtualizarProduto(Guid.Parse(request.Id),request.Nome, request.Lote, request.Validade);
             if (erro)
             {
                 return Erros.Produtos.ProdutoInvalido;

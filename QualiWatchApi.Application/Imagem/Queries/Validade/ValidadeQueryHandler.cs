@@ -16,7 +16,7 @@ public class TextoQueryHandler : IRequestHandler<ValidadeQuery, List<ImageRespon
     public async Task<List<ImageResponse>> Handle(ValidadeQuery request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
-        var validades = _imagemParaTexto.GetValidade(request.Base64);
+        var validades = _imagemParaTexto.PegarValidade(request.Base64);
         return validades;
     }
 }
