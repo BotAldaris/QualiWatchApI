@@ -11,13 +11,13 @@ public class ValidadeRepository : IValidadeRepository
     {
         _dbContext = dbContext;
     }
-    public void AdicionarValidade(ref Produto produto)
+    public void AdicionarValidade(Produto produto)
     {
         produto.SetFoiAlertado(true);
        _dbContext.Validades.Add(Validade.Criar(produto.Id));
     }
 
-    public void DeletarValidade(ref Produto produto)
+    public void DeletarValidade(Produto produto)
     {
         var produtoId = produto.Id;
         var validade = _dbContext.Validades.FirstOrDefault(v => v.ProdutoId == produtoId);
@@ -36,7 +36,7 @@ public class ValidadeRepository : IValidadeRepository
             .ToList();
         if (produtos.Count > 0)
         {
-            produtos.ForEach(p => AdicionarValidade(ref p));
+            produtos.ForEach(p => AdicionarValidade(p));
             _dbContext.SaveChanges();
         }
     }

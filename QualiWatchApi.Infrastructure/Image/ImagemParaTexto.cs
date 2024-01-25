@@ -20,8 +20,7 @@ public class ImagemParaTexto : IImagemParaTexto
 
     private IReadOnlyList<EntityAnnotation> PegarMatchesNoGoogleApi(string base64)
     {
-        // var client = GetClient();
-        ImageAnnotatorClient client = ImageAnnotatorClient.Create();
+        var client = GetClient();
         ImageContext context = new();
         context.LanguageHints.Add("pt");
         byte[] imagemBytes = Convert.FromBase64String(base64);

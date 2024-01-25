@@ -19,10 +19,10 @@ public class ValidadeServices : IValidadeServices
         {
             if (validade > DateTime.Now.AddMonths(1) && produto.FoiAlertado)
             {
-                _validadeRepository.DeletarValidade(ref produto);
+                _validadeRepository.DeletarValidade(produto);
             }else if (DateTime.Now.AddMonths(1) > validade && produto.FoiAlertado == false)
             {
-                _validadeRepository.AdicionarValidade(ref produto);
+                _validadeRepository.AdicionarValidade(produto);
             }
         }
     }

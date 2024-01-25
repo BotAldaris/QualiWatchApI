@@ -1,6 +1,7 @@
 ﻿using QualiWatchApi.Application.Common.Interfaces.Persistence;
 using QualiWatchApi.Application.Common.Interfaces.Services;
 using QualiWatchApi.Domain.Model.Produtos;
+using QualiWatchApi.Domain.Model.Validade;
 
 namespace QualiWatchApi.Infrastructure.Persistence.Repositories;
 
@@ -17,6 +18,7 @@ public class ProdutoRepository : IProdutoRepository
     public async Task AdicionarProduto(Produto produto)
     {
         await _dbContext.Produtos.AddAsync(produto);
+        _validadeServices.AtualizarPertoDeVencer(produto.Validade, produto);
         await _dbContext.SaveChangesAsync();
     }
 
