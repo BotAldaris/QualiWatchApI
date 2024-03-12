@@ -23,7 +23,7 @@ public static class DependecyInjection
     {
         services.AddDbContext<QualiWatchApiDbContext>
             (options => options
-                .UseSqlServer(builderConfiguration.GetConnectionString("QualiWatchConnection")));
+                .UseSqlServer(builderConfiguration.GetConnectionString("QualiWatchConnection"), sqlServerOptions => { sqlServerOptions.EnableRetryOnFailure(); }));
         services.AddScoped<IValidadeRepository, ValidadeRepository>();
         services.AddScoped<IValidadeServices, ValidadeServices>();
         services.AddScoped<IProdutoRepository,ProdutoRepository>();

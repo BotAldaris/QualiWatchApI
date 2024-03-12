@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Aldaris123
+    ports: 
+      - "1433:1433"
+  qualiwatchapi.api:
+    image: ${DOCKER_REGISTRY-}qualiwatchapiapi
+    build:
+      context: .
+      dockerfile: QualiWatchApi.Api/Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+    - db
