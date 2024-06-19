@@ -10,7 +10,7 @@ using QualiWatchApi.Contracts.Produtos;
 
 namespace QualiWatchApi.Api.Controllers;
 
-[Route("[Controller]")]
+[Route("api/[Controller]")]
 public class ProdutosController : ApiController
 {
     private readonly ISender _mediator;
@@ -47,7 +47,7 @@ public class ProdutosController : ApiController
     [HttpPost]
     public async Task<IActionResult> PostProduto([FromBody] CriarProdutoRequest request)
     {
-        var command = new CreateProdutoCommand(request.Nome,request.Lote, request.Validade);
+        var command = new CreateProdutoCommand(request.Nome, request.Lote, request.Validade);
         var produto = await _mediator.Send(command);
         return produto.Match(
             Ok,
@@ -60,7 +60,7 @@ public class ProdutosController : ApiController
         var erro = await _mediator.Send(command);
         return erro.Match(
             _ => NoContent(),
-            Problem); 
+            Problem);
     }
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduto(string id)

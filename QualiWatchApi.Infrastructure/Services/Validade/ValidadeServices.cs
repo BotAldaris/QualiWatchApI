@@ -8,7 +8,7 @@ public class ValidadeServices : IValidadeServices
 {
     private readonly IValidadeRepository _validadeRepository;
 
-    public ValidadeServices( IValidadeRepository validadeRepository)
+    public ValidadeServices(IValidadeRepository validadeRepository)
     {
         _validadeRepository = validadeRepository;
     }
@@ -20,10 +20,16 @@ public class ValidadeServices : IValidadeServices
             if (validade > DateTime.Now.AddMonths(1) && produto.FoiAlertado)
             {
                 _validadeRepository.DeletarValidade(produto);
-            }else if (DateTime.Now.AddMonths(1) > validade && produto.FoiAlertado == false)
+            }
+            else if (DateTime.Now.AddMonths(1) > validade && produto.FoiAlertado == false)
             {
                 _validadeRepository.AdicionarValidade(produto);
             }
         }
+    }
+
+    public Domain.Model.Validade.Validade? GetValidadeByProduct(Guid id)
+    {
+        return _validadeRepository.GetValidadeById(id);
     }
 }

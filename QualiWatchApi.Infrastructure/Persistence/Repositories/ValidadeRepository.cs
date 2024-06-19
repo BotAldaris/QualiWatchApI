@@ -14,7 +14,7 @@ public class ValidadeRepository : IValidadeRepository
     public void AdicionarValidade(Produto produto)
     {
         produto.SetFoiAlertado(true);
-       _dbContext.Validades.Add(Validade.Criar(produto.Id));
+        _dbContext.Validades.Add(Validade.Criar(produto.Id));
     }
 
     public void DeletarValidade(Produto produto)
@@ -42,7 +42,7 @@ public class ValidadeRepository : IValidadeRepository
     }
     public List<Produto> PegarProdutosPertoDeVencer(DateTime? ultimaAtualizacao)
     {
-        if(ultimaAtualizacao is null)
+        if (ultimaAtualizacao is null)
         {
             var prodIds = _dbContext.Validades.Select(v => v.Produto).ToList();
             return prodIds;
@@ -55,6 +55,11 @@ public class ValidadeRepository : IValidadeRepository
                 .ToList();
             return prodIds;
         }
-         
+
+    }
+
+    public Validade? GetValidadeById(Guid id)
+    {
+        return _dbContext.Validades.FirstOrDefault(it => it.ProdutoId == id);
     }
 }

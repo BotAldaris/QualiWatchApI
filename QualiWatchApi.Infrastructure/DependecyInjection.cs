@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using QualiWatchApi.Application.Common.Interfaces.Image;
 using QualiWatchApi.Application.Common.Interfaces.Persistence;
 using QualiWatchApi.Application.Common.Interfaces.Services;
-using QualiWatchApi.Infrastructure.Image;
 using QualiWatchApi.Infrastructure.Persistence;
 using QualiWatchApi.Infrastructure.Persistence.Repositories;
+using QualiWatchApi.Infrastructure.Services.Estatistica;
 using QualiWatchApi.Infrastructure.Services.Validade;
 
 namespace QualiWatchApi.Infrastructure;
@@ -26,8 +25,10 @@ public static class DependecyInjection
                 .UseSqlServer(builderConfiguration.GetConnectionString("QualiWatchConnection"), sqlServerOptions => { sqlServerOptions.EnableRetryOnFailure(); }));
         services.AddScoped<IValidadeRepository, ValidadeRepository>();
         services.AddScoped<IValidadeServices, ValidadeServices>();
-        services.AddScoped<IProdutoRepository,ProdutoRepository>();
-        services.AddSingleton<IImagemParaTexto, ImagemParaTexto>();
+        services.AddScoped<IProdutoAdicionadoRepository, ProdutoAdicionadoRepository>();
+        services.AddScoped<IProdutoMonitoradoRepository, ProdutoMonitoradoRepository>();
+        services.AddScoped<IEstatisticaService, EstatisticaService>();
+        services.AddScoped<IProdutoRepository, ProdutoRepository>();
         services.AddHostedService<ValidadeBackgroundService>();
         services.AddScoped<IValidadeProcessingService, ValidadeProcessingService>();
         return services;

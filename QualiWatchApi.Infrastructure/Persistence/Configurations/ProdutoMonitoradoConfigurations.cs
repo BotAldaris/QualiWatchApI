@@ -1,21 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using QualiWatchApi.Domain.Model.Produtos;
+using QualiWatchApi.Domain.Model.Estatistica;
 
 namespace QualiWatchApi.Infrastructure.Persistence.Configurations;
 
-public class ProdutoConfigurations : IEntityTypeConfiguration<Produto>
+public class ProdutoMonitoradoConfigurations : IEntityTypeConfiguration<ProdutoMonitorado>
 {
-    public void Configure(EntityTypeBuilder<Produto> builder)
+    public void Configure(EntityTypeBuilder<ProdutoMonitorado> builder)
     {
-        builder.ToTable("Produtos");
+        builder.ToTable("ProdutosMonitorados");
 
-        //Id
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id)
             .ValueGeneratedNever();
 
         builder.Property(p => p.Nome).HasMaxLength(255);
-        builder.Property(p => p.Lote).HasMaxLength(255);
     }
 }

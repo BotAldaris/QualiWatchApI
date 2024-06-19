@@ -9,8 +9,8 @@ public class Produto
     public string Nome { get; private set; }
     public string Lote { get; private set; }
     public DateTime Validade { get; private set; }
-    
-    public bool FoiAlertado { get; private set; } 
+    public DateTime DiaAdicionado { get; private set; }
+    public bool FoiAlertado { get; private set; }
 
     private Produto(string nome, string lote, DateTime validade, Guid id)
     {
@@ -19,6 +19,7 @@ public class Produto
         Lote = lote;
         Validade = validade;
         FoiAlertado = false;
+        DiaAdicionado = DateTime.Now;
     }
 
     public static Produto Criar(string nome, string lote, DateTime val)

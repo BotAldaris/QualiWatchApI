@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QualiWatchApi.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AdicionandoValidade : Migration
+    public partial class Inicio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,11 +19,40 @@ namespace QualiWatchApi.Infrastructure.Migrations
                     Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Lote = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Validade = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DiaAdicionado = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FoiAlertado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Produtos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProdutosAdicionados",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProdutosAdicionados", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProdutosMonitorados",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PermaneciaEmEstoque = table.Column<int>(type: "int", nullable: false),
+                    DiasAteRemocaoAposAlerta = table.Column<int>(type: "int", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProdutosMonitorados", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,6 +83,12 @@ namespace QualiWatchApi.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ProdutosAdicionados");
+
+            migrationBuilder.DropTable(
+                name: "ProdutosMonitorados");
+
             migrationBuilder.DropTable(
                 name: "Validades");
 

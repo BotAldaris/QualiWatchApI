@@ -12,23 +12,68 @@ using QualiWatchApi.Infrastructure.Persistence;
 namespace QualiWatchApi.Infrastructure.Migrations
 {
     [DbContext(typeof(QualiWatchApiDbContext))]
-    [Migration("20231126153331_AdicionandoValidade")]
-    partial class AdicionandoValidade
+    [Migration("20240619154339_Inicio")]
+    partial class Inicio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("QualiWatchApi.Domain.Model.Estatistica.ProdutoAdicionado", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProdutosAdicionados", (string)null);
+                });
+
+            modelBuilder.Entity("QualiWatchApi.Domain.Model.Estatistica.ProdutoMonitorado", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DiasAteRemocaoAposAlerta")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("PermaneciaEmEstoque")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProdutosMonitorados", (string)null);
+                });
 
             modelBuilder.Entity("QualiWatchApi.Domain.Model.Produtos.Produto", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DiaAdicionado")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("FoiAlertado")
                         .HasColumnType("bit");

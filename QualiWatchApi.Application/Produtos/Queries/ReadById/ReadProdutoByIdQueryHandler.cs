@@ -3,11 +3,6 @@ using MediatR;
 using QualiWatchApi.Application.Common.Interfaces.Persistence;
 using QualiWatchApi.Application.Produtos.Common;
 using QualiWatchApi.Domain.Common.Erros;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QualiWatchApi.Application.Produtos.Queries.ReadById
 {
@@ -23,7 +18,7 @@ namespace QualiWatchApi.Application.Produtos.Queries.ReadById
         {
             await Task.CompletedTask;
             var produto = _produtoRepository.ReadProdutoById(Guid.Parse(request.Id));
-            if(produto is null)
+            if (produto is null)
             {
                 return Erros.Produtos.ProdutoInvalido;
             }
